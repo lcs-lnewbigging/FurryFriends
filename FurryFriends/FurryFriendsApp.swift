@@ -12,7 +12,36 @@ struct FurryFriendsApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                TabView{
+                    LandingView()
+                        .tabItem {
+                            Label("Home Page", systemImage: "house.fill")
+                        }
+                    ContentView()
+                        .tabItem {
+                            Label("Cats!", systemImage: "house.fill")
+                        }
+                    DogView()
+                        .tabItem {
+                            Label("Dogs!", systemImage: "house.fill")
+                        }
+                
+                
+                
+                
+                
+                }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             }
         }
     }

@@ -13,6 +13,9 @@
 		8134B14C27CA4863004DEB85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8134B14B27CA4863004DEB85 /* Preview Assets.xcassets */; };
 		8134B15427CA55F4004DEB85 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134B15327CA55F4004DEB85 /* RemoteImageView.swift */; };
 		8134B15627CA575E004DEB85 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8134B15527CA575E004DEB85 /* README.md */; };
+		FEF7AB6F27CD14AA008E51CC /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7AB6E27CD14A9008E51CC /* LandingView.swift */; };
+		FEF7AB7127CD155C008E51CC /* DogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7AB7027CD155C008E51CC /* DogView.swift */; };
+		FEF7AB7427CD16F6008E51CC /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = FEF7AB7327CD16F6008E51CC /* ACarousel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,8 @@
 		8134B14B27CA4863004DEB85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8134B15327CA55F4004DEB85 /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
 		8134B15527CA575E004DEB85 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FEF7AB6E27CD14A9008E51CC /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		FEF7AB7027CD155C008E51CC /* DogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF7AB7427CD16F6008E51CC /* ACarousel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,8 @@
 			children = (
 				8134B15727CA5B63004DEB85 /* Helpers */,
 				8134B14627CA4862004DEB85 /* ContentView.swift */,
+				FEF7AB6E27CD14A9008E51CC /* LandingView.swift */,
+				FEF7AB7027CD155C008E51CC /* DogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -105,6 +113,9 @@
 			dependencies = (
 			);
 			name = FurryFriends;
+			packageProductDependencies = (
+				FEF7AB7327CD16F6008E51CC /* ACarousel */,
+			);
 			productName = FurryFriends;
 			productReference = 8134B14127CA4862004DEB85 /* FurryFriends.app */;
 			productType = "com.apple.product-type.application";
@@ -133,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 8134B13827CA4862004DEB85;
+			packageReferences = (
+				FEF7AB7227CD16F6008E51CC /* XCRemoteSwiftPackageReference "ACarousel" */,
+			);
 			productRefGroup = 8134B14227CA4862004DEB85 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -160,6 +174,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF7AB6F27CD14AA008E51CC /* LandingView.swift in Sources */,
+				FEF7AB7127CD155C008E51CC /* DogView.swift in Sources */,
 				8134B14727CA4862004DEB85 /* ContentView.swift in Sources */,
 				8134B15427CA55F4004DEB85 /* RemoteImageView.swift in Sources */,
 				8134B14527CA4862004DEB85 /* FurryFriendsApp.swift in Sources */,
@@ -363,6 +379,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FEF7AB7227CD16F6008E51CC /* XCRemoteSwiftPackageReference "ACarousel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JWAutumn/ACarousel";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FEF7AB7327CD16F6008E51CC /* ACarousel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEF7AB7227CD16F6008E51CC /* XCRemoteSwiftPackageReference "ACarousel" */;
+			productName = ACarousel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8134B13927CA4862004DEB85 /* Project object */;
 }
