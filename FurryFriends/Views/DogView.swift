@@ -22,11 +22,13 @@ struct DogView: View {
     // This will let us know whether the current exists as a favourite
     @State var currentDogAddedToFavourites: Bool = false
     
+    @State var currentImage = URL(string: "https://www.russellgordon.ca/lcs/miscellaneous/transparent-pixel.png")!
+    
     // MARK: Computed properties
     var body: some View {
         VStack {
-            
-            Text(currentDog.message)
+//            currentDog.message
+            RemoteImageView(fromURL: currentImage)
                 .font(.title)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
@@ -92,9 +94,9 @@ struct DogView: View {
         // When the app opens, get a new joke from the web service
         .task {
             
-            // Load a joke from the endpoint!
+            // Load a dog from the endpoint!
             // We "calling" or "invoking" the function
-            // named "loadNewJoke"
+            // named "loadDog"
             // A term for this is the "call site" of a function
             // What does "await" mean?
             // This just means that we, as the programmer, are aware
@@ -104,7 +106,7 @@ struct DogView: View {
             await loadNewDog()
             
             
-            print("I tried to load a new joke")
+            print("I tried to load a new dog")
             
             loadFavourites()
         }
@@ -143,6 +145,7 @@ struct DogView: View {
         // Assemble the URL that points to the endpoint
         let url = URL(string: "https://dog.ceo/api/breeds/image/random")!
         
+
         // Define the type of data we want from the endpoint
         // Configure the request to the web site
         var request = URLRequest(url: url)
@@ -161,13 +164,14 @@ struct DogView: View {
             let (data, _) = try await urlSession.data(for: request)
             
             // Attempt to decode the raw data into a Swift structure
-            // Takes what is in "data" and tries to put it into "currentJoke"
+            // Takes what is in "data" and tries to put it into "currentDog"
             //                                 DATA TYPE TO DECODE TO
             //                                         |
             //                                         V
             currentDog = try JSONDecoder().decode(Dog.self, from: data)
             
-            
+            currentImage = URL(string: currentDog.message)!
+
             
             // Reset the flag that tracks whether the current joke
             // is a favourite
