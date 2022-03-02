@@ -16,6 +16,7 @@
 		FEF7AB6F27CD14AA008E51CC /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7AB6E27CD14A9008E51CC /* LandingView.swift */; };
 		FEF7AB7127CD155C008E51CC /* DogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7AB7027CD155C008E51CC /* DogView.swift */; };
 		FEF7AB7427CD16F6008E51CC /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = FEF7AB7327CD16F6008E51CC /* ACarousel */; };
+		FEF7AB7727CE7FE7008E51CC /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7AB7627CE7FE6008E51CC /* SharedFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		8134B15527CA575E004DEB85 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FEF7AB6E27CD14A9008E51CC /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		FEF7AB7027CD155C008E51CC /* DogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogView.swift; sourceTree = "<group>"; };
+		FEF7AB7627CE7FE6008E51CC /* SharedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		8134B15227CA55BC004DEB85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FEF7AB7527CE7FCB008E51CC /* Model  */,
 				8134B15727CA5B63004DEB85 /* Helpers */,
 				8134B14627CA4862004DEB85 /* ContentView.swift */,
 				FEF7AB6E27CD14A9008E51CC /* LandingView.swift */,
@@ -95,6 +98,14 @@
 				8134B15327CA55F4004DEB85 /* RemoteImageView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FEF7AB7527CE7FCB008E51CC /* Model  */ = {
+			isa = PBXGroup;
+			children = (
+				FEF7AB7627CE7FE6008E51CC /* SharedFunctions.swift */,
+			);
+			path = "Model ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 			files = (
 				FEF7AB6F27CD14AA008E51CC /* LandingView.swift in Sources */,
 				FEF7AB7127CD155C008E51CC /* DogView.swift in Sources */,
+				FEF7AB7727CE7FE7008E51CC /* SharedFunctions.swift in Sources */,
 				8134B14727CA4862004DEB85 /* ContentView.swift in Sources */,
 				8134B15427CA55F4004DEB85 /* RemoteImageView.swift in Sources */,
 				8134B14527CA4862004DEB85 /* FurryFriendsApp.swift in Sources */,

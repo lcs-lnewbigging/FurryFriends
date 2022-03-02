@@ -30,6 +30,19 @@ struct RemoteImageView: View {
     
 }
 
+func getDocumentsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+    
+    return paths[0]
+
+}
+
+let saveFavouritesLabel = "savedFavourites"
+
+
+
+
 struct RemoteImageView_Previews: PreviewProvider {
     
     // Uses a website that provides a different 640x360 image each time the address is loaded
