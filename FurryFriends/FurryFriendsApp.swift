@@ -17,14 +17,15 @@ struct FurryFriendsApp: App {
                         .tabItem {
                             Label("Home Page", systemImage: "house.fill")
                         }
-                    ContentView()
-                        .tabItem {
-                            Label("Cats!", systemImage: "house.fill")
-                        }
                     DogView()
                         .tabItem {
-                            Label("Dogs!", systemImage: "house.fill")
+                            Label("Dogs!", systemImage: "pawprint")
                         }
+                    CatView()
+                        .tabItem {
+                            Label("Cats!", systemImage: "pawprint.circle")
+                        }
+                    
                 
                 
                 

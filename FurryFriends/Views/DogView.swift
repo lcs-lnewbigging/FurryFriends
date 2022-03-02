@@ -85,7 +85,9 @@ struct DogView: View {
             // As we iterate, each individual favourite is
             // accessible via "currentFavourite"
             List(favourites, id: \.self) { currentFavourite in
-                Text(currentFavourite.message)
+                let currentFavouriteURL = URL(string: currentFavourite.message)!
+                RemoteImageView(fromURL: currentFavouriteURL)
+//                Text(currentFavourite.message)
             }
             
             Spacer()
