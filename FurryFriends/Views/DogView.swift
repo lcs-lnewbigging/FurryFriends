@@ -14,7 +14,7 @@ struct DogView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @State var currentDog: Dog = Dog(message: "",
-                                                                status: "")
+                                     status: "")
     
     // This will keep track of our list of favourite jokes
     @State var favourites: [Dog] = []   // empty list to start
@@ -27,15 +27,17 @@ struct DogView: View {
     // MARK: Computed properties
     var body: some View {
         VStack {
-//            currentDog.message
+            Text("Dogs")
+                .bold()
+                .font(.largeTitle)
             RemoteImageView(fromURL: currentImage)
                 .font(.title)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
                 .padding(30)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.primary, lineWidth: 4)
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white, lineWidth: 4)
                 )
                 .padding(10)
             
@@ -72,7 +74,7 @@ struct DogView: View {
             }, label: {
                 Text("Another one!")
             })
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderedProminent)
             
             HStack {
                 Text("Favourites")
@@ -87,7 +89,7 @@ struct DogView: View {
             List(favourites, id: \.self) { currentFavourite in
                 let currentFavouriteURL = URL(string: currentFavourite.message)!
                 RemoteImageView(fromURL: currentFavouriteURL)
-//                Text(currentFavourite.message)
+                //                Text(currentFavourite.message)
             }
             
             Spacer()
@@ -129,10 +131,12 @@ struct DogView: View {
             }
             
         }
-        .navigationTitle("Dogs")
+//        .navigationTitle("Dogs")
+        .background(Color.cyan)
         .padding()
-      
-               
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color.cyan)
+        
     }
     
     // MARK: Functions
@@ -147,7 +151,7 @@ struct DogView: View {
         // Assemble the URL that points to the endpoint
         let url = URL(string: "https://dog.ceo/api/breeds/image/random")!
         
-
+        
         // Define the type of data we want from the endpoint
         // Configure the request to the web site
         var request = URLRequest(url: url)
@@ -173,7 +177,7 @@ struct DogView: View {
             currentDog = try JSONDecoder().decode(Dog.self, from: data)
             
             currentImage = URL(string: currentDog.message)!
-
+            
             
             // Reset the flag that tracks whether the current joke
             // is a favourite
@@ -262,6 +266,9 @@ struct DogView: View {
 
 struct DogView_Previews: PreviewProvider {
     static var previews: some View {
-        DogView()
+        NavigationView{
+            DogView()
+        }
+        .preferredColorScheme(.light)
     }
 }

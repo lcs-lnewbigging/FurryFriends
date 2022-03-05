@@ -17,6 +17,7 @@ struct FurryFriendsApp: App {
                         .tabItem {
                             Label("Home Page", systemImage: "house.fill")
                         }
+                    
                     DogView()
                         .tabItem {
                             Label("Dogs!", systemImage: "pawprint")
@@ -26,23 +27,23 @@ struct FurryFriendsApp: App {
                             Label("Cats!", systemImage: "pawprint.circle")
                         }
                     
-                
-                
-                
-                
-                
+                    
+                    
+                    
+                    
+                    
                 }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             }
         }
     }

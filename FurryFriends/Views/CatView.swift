@@ -26,15 +26,17 @@ struct CatView: View {
     // MARK: Computed properties
     var body: some View {
         VStack {
-//            currentDog.message
+            Text("Cats")
+                .bold()
+                .font(.largeTitle)
             RemoteImageView(fromURL: currentImage)
                 .font(.title)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
                 .padding(30)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.primary, lineWidth: 4)
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white, lineWidth: 4)
                 )
                 .padding(10)
             
@@ -71,7 +73,7 @@ struct CatView: View {
             }, label: {
                 Text("Another one!")
             })
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderedProminent)
             
             HStack {
                 Text("Favourites")
@@ -86,13 +88,13 @@ struct CatView: View {
             List(favourites, id: \.self) { currentFavourite in
                 let currentFavouriteURL = URL(string: currentFavourite.file)!
                 RemoteImageView(fromURL: currentFavouriteURL)
-//                Text(currentFavourite.message)
+                //                Text(currentFavourite.message)
             }
             
             Spacer()
             
         }
-       
+        
         .task {
             
             await loadNewCat()
@@ -112,26 +114,27 @@ struct CatView: View {
             } else if newPhase == .background{
                 print ("background")
                 
-              
+                
                 persistFavourites()
                 
                 
             }
             
         }
-        .navigationTitle("Cats")
-        .padding()
-      
-               
+        //        .navigationTitle("Cats")
+        .padding(10)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color.cyan)
+        
     }
     
     // MARK: Functions
     
     func loadNewCat() async {
-       
+        
         let url = URL(string: "https://aws.random.cat/meow")!
         
-
+        
         var request = URLRequest(url: url)
         
         request.setValue("application/json",
@@ -140,10 +143,10 @@ struct CatView: View {
         
         let urlSession = URLSession.shared
         
-       
+        
         do {
             
-                        let (data, _) = try await urlSession.data(for: request)
+            let (data, _) = try await urlSession.data(for: request)
             
             // Attempt to decode the raw data into a Swift structure
             // Takes what is in "data" and tries to put it into "currentCat"
@@ -153,7 +156,7 @@ struct CatView: View {
             currentCat = try JSONDecoder().decode(Cat.self, from: data)
             
             currentImage = URL(string: currentCat.file)!
-
+            
             
             
             currentCatAddedToFavourites = false
@@ -171,7 +174,7 @@ struct CatView: View {
         let fileName = getDocumentsDirectory() .appendingPathComponent(saveFavouritesLabel)
         print(fileName)
         
-       
+        
         
         do{
             
@@ -219,7 +222,7 @@ struct CatView: View {
             print (String(data: data, encoding: .utf8)!)
             
             
-           
+            
             favourites = try JSONDecoder().decode([Cat].self, from: data)
             
             
@@ -233,8 +236,8 @@ struct CatView: View {
         }
     }
 }
-        
-    
+
+
 
 
 struct CatView_Previews: PreviewProvider {

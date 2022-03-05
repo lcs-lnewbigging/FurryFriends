@@ -96,8 +96,20 @@ struct LandingView: View {
                     .stroke(Color.white, lineWidth: 4)
                     .padding(-10)
             )
-            
-        
+            .padding(25)
+            NavigationLink(destination: CatView()) {
+                
+                EnhancedListItemView(imageName: "CatPic1",
+                                     title: "Your Favourite Cats",
+                                     subtitle: "Check out your favourited cat images!")
+                    .font(.body)
+                
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.white, lineWidth: 4)
+                    .padding(-10)
+            )
         
         
         
