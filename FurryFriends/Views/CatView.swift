@@ -92,26 +92,17 @@ struct CatView: View {
             Spacer()
             
         }
-        // When the app opens, get a new joke from the web service
+       
         .task {
             
-            // Load a dog from the endpoint!
-            // We "calling" or "invoking" the function
-            // named "loadDog"
-            // A term for this is the "call site" of a function
-            // What does "await" mean?
-            // This just means that we, as the programmer, are aware
-            // that this function is asynchronous.
-            // Result might come right away, or, take some time to complete.
-            // ALSO: Any code below this call will run before the function call completes.
             await loadNewCat()
             
             
-            print("I tried to load a new dog")
+            print("I tried to load a new cat")
             
             loadFavourites()
         }
-        //React to changes of state for the app (foreground, background, inactive)
+        
         .onChange(of: scenePhase) { newPhase in
             
             if newPhase == .inactive{
@@ -121,14 +112,14 @@ struct CatView: View {
             } else if newPhase == .background{
                 print ("background")
                 
-                //permantly save the list of tasks
+              
                 persistFavourites()
                 
                 
             }
             
         }
-        .navigationTitle("Furry Friends")
+        .navigationTitle("Cats")
         .padding()
       
                
@@ -136,36 +127,26 @@ struct CatView: View {
     
     // MARK: Functions
     
-    // Define the function "loadNewDog"
-    // Teaching our app to do a "new thing"
-    //
-    // Using the "async" keyword means that this function can potentially
-    // be run alongside other tasks that the app needs to do (for example,
-    // updating the user interfac
     func loadNewCat() async {
-        // Assemble the URL that points to the endpoint
+       
         let url = URL(string: "https://aws.random.cat/meow")!
         
 
-        // Define the type of data we want from the endpoint
-        // Configure the request to the web site
         var request = URLRequest(url: url)
-        // Ask for JSON data
+        
         request.setValue("application/json",
                          forHTTPHeaderField: "Accept")
         
-        // Start a session to interact (talk with) the endpoint
+        
         let urlSession = URLSession.shared
         
-        // Try to fetch a new joke
-        // It might not work, so we use a do-catch block
+       
         do {
             
-            // Get the raw data from the endpoint
-            let (data, _) = try await urlSession.data(for: request)
+                        let (data, _) = try await urlSession.data(for: request)
             
             // Attempt to decode the raw data into a Swift structure
-            // Takes what is in "data" and tries to put it into "currentDog"
+            // Takes what is in "data" and tries to put it into "currentCat"
             //                                 DATA TYPE TO DECODE TO
             //                                         |
             //                                         V
@@ -174,40 +155,38 @@ struct CatView: View {
             currentImage = URL(string: currentCat.file)!
 
             
-            // Reset the flag that tracks whether the current joke
-            // is a favourite
+            
             currentCatAddedToFavourites = false
             
         } catch {
             print("Could not retrieve or decode the JSON from endpoint.")
-            // Print the contents of the "error" constant that the do-catch block
-            // populates
+            
             print(error)
         }
         
     }
     
     func persistFavourites() {
-        //Get a location to store data
+        
         let fileName = getDocumentsDirectory() .appendingPathComponent(saveFavouritesLabel)
         print(fileName)
         
-        //Try to encode the data in out list of Favourites to JSON
+       
         
         do{
-            //Create JSON Encoder
+            
             let encoder = JSONEncoder()
             
-            //configured to "pretty print" the JSON
+            
             encoder.outputFormatting = .prettyPrinted
             
-            //Encode the list of favourites we've collected
+            
             let data = try encoder.encode(favourites)
             
-            // Write the JSON to a file in the file name location we came up with earlier
+            
             try data.write(to: fileName, options: [ .atomicWrite, .completeFileProtection])
             
-            //See the data that was writen
+            
             print ("Saved data to the Document Directory sucessfully")
             print ("=========")
             print (String(data: data, encoding: .utf8)!)
@@ -226,26 +205,24 @@ struct CatView: View {
         let fileName = getDocumentsDirectory() .appendingPathComponent(saveFavouritesLabel)
         print(fileName)
         
-        //Attempt to load data
+        
         
         do{
             
             
-            //Load the raw data
+            
             let data = try Data (contentsOf: fileName)
             
-            //See the data that was writen
+            
             print ("Saved data to the Document Directory sucessfully")
             print ("=========")
             print (String(data: data, encoding: .utf8)!)
             
             
-            //Decode the JSON into Swift native file
-            //NOTE: we use [DadJoke] since we are loading into a list (array)
+           
             favourites = try JSONDecoder().decode([Cat].self, from: data)
             
-            //Loads the data the was saved to the device
-            //Loading our data...
+            
             
             
         } catch {

@@ -26,15 +26,21 @@ struct LandingView: View {
         ScrollView{
             VStack (spacing: 10) {
                 
-                //            Text("Furry Friends")
-                //                .bold()
-                //                .font(.largeTitle)
+                Text("Furry Friends")
+                    .bold()
+                    .font(.largeTitle)
                 
-                Divider()
+                Spacer()
+                
+                
                 Text("Look at these cute animals!")
-                    .font(.subheadline)
+                    .font(.body)
                     .bold()
                     .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 4)
+                    )
                 
                 HStack{
                     ACarousel(items) { item in
@@ -46,35 +52,70 @@ struct LandingView: View {
                     }
                     .frame(height: 300)
                 }
-                
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white, lineWidth: 4)
+                        .padding(-5)
+                )
+                .padding(10)
                 
                 
                 HStack{
                     Text("Check out some of the other tabs to see pictures of cats and dogs!")
-                        .font(.subheadline)
+                        .bold()
+                        .font(.body)
                         .padding()
+                    //                        .background(Color.cyan)
+                    
+                    
                 }
-                //                        List{
-                //                            NavigationLink( destination:DogView())
-                //                        }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white, lineWidth: 4)
+                )
+                .padding(10)
+//                List{
+//                    NavigationLink( destination:DogView())
+//                }
                 Spacer()
                 
                 
                 
                 
             }
+            NavigationLink(destination: DogView()) {
+                
+                EnhancedListItemView(imageName: "DogPic1",
+                                     title: "Your Favourite Dogs",
+                                     subtitle: "Check out your favourited dog images!")
+                    .font(.body)
+                
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.white, lineWidth: 4)
+                    .padding(-10)
+            )
             
-            .navigationTitle("Furry Friends")
-            
+        
+        
+        
+        
+        
+        
         }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color.cyan)
     }
     
 }
 
+
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            LandingView()
+        LandingView()
+            .preferredColorScheme(.dark)
         }
     }
 }

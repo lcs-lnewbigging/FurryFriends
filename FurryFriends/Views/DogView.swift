@@ -129,7 +129,7 @@ struct DogView: View {
             }
             
         }
-        .navigationTitle("Furry Friends")
+        .navigationTitle("Dogs")
         .padding()
       
                
