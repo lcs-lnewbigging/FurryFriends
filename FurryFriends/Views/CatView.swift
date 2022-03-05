@@ -10,15 +10,15 @@ import SwiftUI
 struct CatView: View {
     
     // MARK: Stored properties
-    // Detect when an app moves between forground, background, and inactive states
+    
     @Environment(\.scenePhase) var scenePhase
     
     @State var currentCat: Cat = Cat(file: "")
     
-    // This will keep track of our list of favourite jokes
-    @State var favourites: [Cat] = []   // empty list to start
     
-    // This will let us know whether the current exists as a favourite
+    @State var favourites: [Cat] = []
+    
+    
     @State var currentCatAddedToFavourites: Bool = false
     
     @State var currentImage = URL(string: "https://www.russellgordon.ca/lcs/miscellaneous/transparent-pixel.png")!
@@ -46,13 +46,13 @@ struct CatView: View {
                 .foregroundColor(currentCatAddedToFavourites == true ? .red : .secondary)
                 .onTapGesture {
                     
-                    // Only add to the list if it is not already there
+                    
                     if currentCatAddedToFavourites == false {
                         
-                        // Adds the current joke to the list
+                        
                         favourites.append(currentCat)
                         
-                        // Record that we have marked this as a favourite
+                        
                         currentCatAddedToFavourites = true
                         
                     }
@@ -82,13 +82,11 @@ struct CatView: View {
                 Spacer()
             }
             
-            // Iterate over the list of favourites
-            // As we iterate, each individual favourite is
-            // accessible via "currentFavourite"
+            
             List(favourites, id: \.self) { currentFavourite in
                 let currentFavouriteURL = URL(string: currentFavourite.file)!
                 RemoteImageView(fromURL: currentFavouriteURL)
-                //                Text(currentFavourite.message)
+                
             }
             
             Spacer()
@@ -121,7 +119,7 @@ struct CatView: View {
             }
             
         }
-        //        .navigationTitle("Cats")
+        
         .padding(10)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.cyan)

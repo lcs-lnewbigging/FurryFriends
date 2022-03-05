@@ -10,16 +10,16 @@ import SwiftUI
 struct DogView: View {
     
     // MARK: Stored properties
-    // Detect when an app moves between forground, background, and inactive states
+    
     @Environment(\.scenePhase) var scenePhase
     
     @State var currentDog: Dog = Dog(message: "",
                                      status: "")
     
-    // This will keep track of our list of favourite jokes
-    @State var favourites: [Dog] = []   // empty list to start
     
-    // This will let us know whether the current exists as a favourite
+    @State var favourites: [Dog] = []
+    
+    
     @State var currentDogAddedToFavourites: Bool = false
     
     @State var currentImage = URL(string: "https://www.russellgordon.ca/lcs/miscellaneous/transparent-pixel.png")!
@@ -47,13 +47,13 @@ struct DogView: View {
                 .foregroundColor(currentDogAddedToFavourites == true ? .red : .secondary)
                 .onTapGesture {
                     
-                    // Only add to the list if it is not already there
+                    
                     if currentDogAddedToFavourites == false {
                         
-                        // Adds the current joke to the list
+                        
                         favourites.append(currentDog)
                         
-                        // Record that we have marked this as a favourite
+                        
                         currentDogAddedToFavourites = true
                         
                     }
@@ -83,9 +83,7 @@ struct DogView: View {
                 Spacer()
             }
             
-            // Iterate over the list of favourites
-            // As we iterate, each individual favourite is
-            // accessible via "currentFavourite"
+            
             List(favourites, id: \.self) { currentFavourite in
                 let currentFavouriteURL = URL(string: currentFavourite.message)!
                 RemoteImageView(fromURL: currentFavouriteURL)
@@ -95,7 +93,7 @@ struct DogView: View {
             Spacer()
             
         }
-        // When the app opens, get a new joke from the web service
+        
         .task {
             
             // Load a dog from the endpoint!
@@ -114,7 +112,7 @@ struct DogView: View {
             
             loadFavourites()
         }
-        //React to changes of state for the app (foreground, background, inactive)
+        
         .onChange(of: scenePhase) { newPhase in
             
             if newPhase == .inactive{
@@ -131,7 +129,7 @@ struct DogView: View {
             }
             
         }
-//        .navigationTitle("Dogs")
+        
         .background(Color.cyan)
         .padding()
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
@@ -141,12 +139,7 @@ struct DogView: View {
     
     // MARK: Functions
     
-    // Define the function "loadNewDog"
-    // Teaching our app to do a "new thing"
-    //
-    // Using the "async" keyword means that this function can potentially
-    // be run alongside other tasks that the app needs to do (for example,
-    // updating the user interfac
+    
     func loadNewDog() async {
         // Assemble the URL that points to the endpoint
         let url = URL(string: "https://dog.ceo/api/breeds/image/random")!
@@ -193,26 +186,26 @@ struct DogView: View {
     }
     
     func persistFavourites() {
-        //Get a location to store data
+        
         let fileName = getDocumentsDirectory() .appendingPathComponent(saveFavouritesLabel)
         print(fileName)
         
-        //Try to encode the data in out list of Favourites to JSON
+        
         
         do{
-            //Create JSON Encoder
+            
             let encoder = JSONEncoder()
             
-            //configured to "pretty print" the JSON
+            
             encoder.outputFormatting = .prettyPrinted
             
-            //Encode the list of favourites we've collected
+            
             let data = try encoder.encode(favourites)
             
-            // Write the JSON to a file in the file name location we came up with earlier
+            
             try data.write(to: fileName, options: [ .atomicWrite, .completeFileProtection])
             
-            //See the data that was writen
+            
             print ("Saved data to the Document Directory sucessfully")
             print ("=========")
             print (String(data: data, encoding: .utf8)!)
@@ -231,30 +224,28 @@ struct DogView: View {
         let fileName = getDocumentsDirectory() .appendingPathComponent(saveFavouritesLabel)
         print(fileName)
         
-        //Attempt to load data
+        
         
         do{
             
             
-            //Load the raw data
+            
             let data = try Data (contentsOf: fileName)
             
-            //See the data that was writen
+            
             print ("Saved data to the Document Directory sucessfully")
             print ("=========")
             print (String(data: data, encoding: .utf8)!)
             
             
-            //Decode the JSON into Swift native file
-            //NOTE: we use [DadJoke] since we are loading into a list (array)
+            
             favourites = try JSONDecoder().decode([Dog].self, from: data)
             
-            //Loads the data the was saved to the device
-            //Loading our data...
+            
             
             
         } catch {
-            //What went wrong
+            
             print("Could not load the data from the stored JSON file")
             print("=======")
             print(error.localizedDescription)

@@ -65,7 +65,7 @@ struct LandingView: View {
                         .bold()
                         .font(.body)
                         .padding()
-                    //                        .background(Color.cyan)
+                    
                     
                     
                 }
@@ -74,9 +74,7 @@ struct LandingView: View {
                         .stroke(Color.white, lineWidth: 4)
                 )
                 .padding(10)
-//                List{
-//                    NavigationLink( destination:DogView())
-//                }
+                
                 Spacer()
                 
                 
@@ -110,11 +108,11 @@ struct LandingView: View {
                     .stroke(Color.white, lineWidth: 4)
                     .padding(-10)
             )
-        
-        
-        
-        
-        
+            
+            
+            
+            
+            
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.cyan)
@@ -126,8 +124,8 @@ struct LandingView: View {
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-        LandingView()
-            .preferredColorScheme(.dark)
+            LandingView()
+                .preferredColorScheme(.dark)
         }
     }
 }
